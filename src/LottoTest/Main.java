@@ -2,7 +2,7 @@ package LottoTest;
 
 import java.util.*;
 
-public class Customer {
+public class Main {
     public static void main(String[] args) {
         ServiceCounter CS = new ServiceCounter();
         Scanner sn = new Scanner(System.in);
