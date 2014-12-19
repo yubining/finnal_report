@@ -5,26 +5,35 @@ import java.util.Scanner;
 /**
  * Created by yubin on 2014-12-19.
  */
-public class buyer {
+public class Buyer {
+    private int lottoCountSheet;
+    int[][] lottosheet;
+    private Seller seller;
+    private AutoLotto autolotto;
+    private WinLotto winlotto;
+
+
+
     public void buyRequest(Scanner sn) {
         // TODO Auto-generated method stub
-        LottoSystem lottoSystem;
-        communication(sn);
-        if (isAuto()) {
+        seller = new Seller();
+        lottoCountSheet = seller.communication(sn);
 
-            lottoSystem = new LottoSystem(lottoselect, lottoCountSheet);
-            lottosheet = lottoSystem.autoLotto(lottoCountSheet);
+        if (seller.isAuto()) {
+
+            autolotto = new AutoLotto();
+            lottosheet = autolotto.autoLotto(lottoCountSheet);
         } else {
             lottosheet = manualLotto(sn, lottoCountSheet);
-            lottoSystem = new LottoSystem(lottosheet);
         }
 
-        int[] matchCount = lottoSystem.matchLotto(lottosheet,
-                lottoSystem.createWinLotto());
+        int[] matchCount = autolotto.matchLotto(lottosheet,
+                winlotto.createWinLotto());
         System.out.println();
         System.out.println("구매한 로또");
-        printSheet(lottosheet, matchCount);
+        printSheet(autolotto.matchCount);
     }
+
     public int[][] manualLotto(Scanner sn, int lottoCountSheet) {
         int[][] lottosheet = new int[lottoCountSheet][6];
         int[] userInput = new int[6];
@@ -63,6 +72,7 @@ public class buyer {
         }
         return lottosheet;
     }
+
     public void printSheet(int[][] lottoSheet, int[] matchCount) {
         System.out.println("선택한 숫자는:");
         for (int z = 0; z < lottoSheet.length; z++) {
@@ -73,4 +83,5 @@ public class buyer {
             System.out.println("맞은숫자 :" + matchCount[z]);
             System.out.println();
         }
+    }
 }
