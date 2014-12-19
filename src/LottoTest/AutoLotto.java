@@ -6,20 +6,20 @@ import java.util.Random;
  * Created by yubin on 2014-12-19.
  */
 public class AutoLotto {
-
+    int[] matchCount;
     public int[] matchLotto(int[][] lottosheet, int[] winLotto) {
-        int lottoCountSheet = lottosheet.length;
-        int[] matchCount = new int[lottoCountSheet];
+                int lottoCountSheet = lottosheet.length;
+                int[] matchCount = new int[lottoCountSheet];
 
-        for (int i = 0; i < lottoCountSheet; i++) {
-            for (int j = 0; j < 6; j++) {
-                for (int z = 0; z < 6; z++) {
-                    if (lottosheet[i][j] == winLotto[z]) {
-                        matchCount[i]++;
-                        break;
+                for (int i = 0; i < lottoCountSheet; i++) {
+                    for (int j = 0; j < 6; j++) {
+                        for (int z = 0; z < 6; z++) {
+                            if (lottosheet[i][j] == winLotto[z]) {
+                                matchCount[i]++;
+                                break;
+                            }
+                        }
                     }
-                }
-            }
         }
 
         return matchCount;
